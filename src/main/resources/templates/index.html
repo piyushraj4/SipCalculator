@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SIP Calculator</title>
+</head>
+<body>
+    <h1>SIP Calculator</h1>
+    <form action="#" th:action="@{/calculate}" th:object="${sipRequest}" method="post">
+        <label for="monthlyInvestment">Monthly Investment:</label>
+        <input type="number" id="monthlyInvestment" th:field="*{monthlyInvestment}" required/><br/>
+
+        <label for="rateOfInterest">Rate of Interest (% per annum):</label>
+        <input type="number" id="rateOfInterest" th:field="*{rateOfInterest}" required/><br/>
+
+        <label for="investmentPeriod">Investment Period (years):</label>
+        <input type="number" id="investmentPeriod" th:field="*{investmentPeriod}" required/><br/>
+
+        <button type="submit">Calculate</button>
+    </form>
+    
+    <div th:if="${sipResult != null}">
+        <h2>Results</h2>
+        <p>Total Investment: <span th:text="${sipResult.totalInvestment}"></span></p>
+        <p>Estimated Returns: <span th:text="${sipResult.estimatedReturns}"></span></p>
+        <p>Future Value: <span th:text="${sipResult.futureValue}"></span></p>
+    </div>
+</body>
+</html>
